@@ -23,4 +23,9 @@ public class DemoController {
     public String getJooQDemo() {
         return "Not Implemented yet!";
     }
+
+    @Get("/tests")
+    public String getTestData() {
+        return "test";
+    }
 }
