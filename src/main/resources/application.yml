@@ -5,3 +5,8 @@ micronaut:
     server:
         port: 9090
         
+endpoints:
+    stop:
+        enabled: true
+    health:
+        enabled: true
