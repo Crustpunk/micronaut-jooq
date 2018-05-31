@@ -1,2 +1,3 @@
 # micronaut-jooq
-Repo for some samples 
+
+Some samples 
