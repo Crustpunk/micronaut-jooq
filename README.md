@@ -1,3 +1,0 @@
-# micronaut-jooq
-
-Some samples 

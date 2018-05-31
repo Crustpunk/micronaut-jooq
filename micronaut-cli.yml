@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: micronaut.jooq.demo
+defaultPackage: micronaut.jooq.samples
 ---
 testFramework: junit
 sourceLanguage: java
