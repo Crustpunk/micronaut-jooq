@@ -1,0 +1,9 @@
+micronaut:
+    application:
+        name: Micronaut-jooq-demo
+        
+        
+
+    server:
+        port: 9090
+
