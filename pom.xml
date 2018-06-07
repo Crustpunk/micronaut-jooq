@@ -7,6 +7,8 @@
         <exec.mainClass>micronaut.jooq.samples.Application</exec.mainClass>
         <micronaut.version>1.0.0.M1</micronaut.version>
         <jdk.version>1.8</jdk.version>
+        <skip.jooq.generation>false</skip.jooq.generation>
+        <jooq.externalfile>./src/main/resources/jooQDemo.xml</jooq.externalfile>
     </properties>
     <repositories>
         <repository>
@@ -68,9 +70,52 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!-- jooQ--> 
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.10.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta</artifactId>
+            <version>3.10.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+            <version>3.10.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.2.5</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <!-- Specify the maven code generator plugin -->
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.10.7</version>
+
+                <executions>
+                    <execution>
+                        <id>jooq-codegen</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skip.jooq.generation}</skip>
+
+                            <!-- Instead of providing an inline configuration here, you can specify an external XML configuration file here -->
+                            <configurationFile>${jooq.externalfile}</configurationFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

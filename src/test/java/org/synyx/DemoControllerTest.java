@@ -11,45 +11,41 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 import static org.junit.Assert.*;
 
 /**
  * Test for demo purposes.
- * 
+ *
  * @author Joachim Arrasz <arrasz@synyx.de>
  */
 public class DemoControllerTest {
-   
+
     private static EmbeddedServer server;
     private static HttpClient client;
 
-    @BeforeClass 
+    @BeforeClass
     public static void setupServer() {
         server = ApplicationContext.run(EmbeddedServer.class);
         client = server
-                    .getApplicationContext()
-                    .createBean(HttpClient.class, server.getURL());
+                .getApplicationContext()
+                .createBean(HttpClient.class, server.getURL());
     }
 
-    @AfterClass 
+    @AfterClass
     public static void stopServer() {
-        if(server != null) {
+        if (server != null) {
             server.stop();
         }
-        if(client != null) {
+        if (client != null) {
             client.stop();
         }
     }
 
     @Test
     public void testIssue() throws Exception {
-        String body = client.toBlocking().retrieve("/tests"); 
+        String body = client.toBlocking().retrieve("/tests");
         assertNotNull(body);
         assertEquals(body, "test");
     }
-    
-    
-    
-    
+
 }
